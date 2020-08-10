@@ -28,7 +28,7 @@ namespace GTomato
         private void Form1_Load(object sender, EventArgs e)
         {
             countdown = config.FocusTime;
-            showCountdown();
+            ShowCountdown();
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -37,12 +37,34 @@ namespace GTomato
             timer1.Start();
         }
 
+        // 暂停
         private void btnPause_Click(object sender, EventArgs e)
         {
             pause = true;
         }
 
-        private void btnRest_Click(object sender, EventArgs e)
+        // 长休息
+        private void btnLongBreak_Click(object sender, EventArgs e)
+        {
+            ShowBreak(config.LongBreakTime);
+
+            longBreakNeedTomato = 0;
+        }
+
+        // 短休息
+        private void btnShortBreak_Click(object sender, EventArgs e)
+        {
+            ShowBreak(config.ShortBreakTime);
+        }
+
+        // 立即吃掉一个番茄
+        private void btnAddOneTomato_Click(object sender, EventArgs e)
+        {
+            AddOneTomato();
+        }
+
+        // 重置长休
+        private void btnResetLongBreak_Click(object sender, EventArgs e)
         {
             longBreakNeedTomato = 0;
         }
@@ -52,36 +74,49 @@ namespace GTomato
             if (pause) return;
 
             countdown -= second;
-            showCountdown();
+            ShowCountdown();
+            notifyIcon1.Text = countdown.ToString(@"mm\:ss");
 
             if (countdown == TimeSpan.Zero)
             {
                 timer1.Stop();
 
-                tomatoCount++;
-                showTomatoPicture();
-                lblTomatoCount.Text = $"今日番茄数量 {tomatoCount}";
-
-                FrmBreakTime frmBreakTime = new FrmBreakTime(GetBreakTime());
-                frmBreakTime.TopMost = true;
-                frmBreakTime.Focus();
-
-                if (frmBreakTime.ShowDialog() == DialogResult.OK)
-                {
-                    WindowState = FormWindowState.Normal;
-                    TopMost = true;
-                }
-
-                notifyIcon1.Text = "番茄工作法";
+                AddOneTomato();
                 countdown = config.FocusTime;
-                showCountdown();
+
+                ShowBreak(GetBreakTime());
+
+                ShowCountdown();
+                notifyIcon1.Text = "番茄土豆";
             }
         }
 
+        // 吃掉一个番茄
+        private void AddOneTomato()
+        {
+            tomatoCount++;
+            longBreakNeedTomato++;
+            ShowTomatoPicture();
+            lblTomatoCount.Text = $"今日番茄数量 {tomatoCount}";
+        }
+
+        // 显示休息页面
+        private void ShowBreak(TimeSpan breakTime)
+        {
+            FrmBreakTime frmBreakTime = new FrmBreakTime(breakTime);
+            frmBreakTime.TopMost = true;
+            frmBreakTime.Focus();
+
+            if (frmBreakTime.ShowDialog() == DialogResult.OK)
+            {
+                WindowState = FormWindowState.Normal;
+                TopMost = true;
+            }
+        }
+
+        // 计算休息时长
         private TimeSpan GetBreakTime()
         {
-            longBreakNeedTomato++;
-
             if (tomatoCount <= 8)
             {
                 // 8 个番茄以内，每 4 个番茄一次长时间休息
@@ -94,6 +129,7 @@ namespace GTomato
             }
         }
 
+        // 计算休息时长
         private TimeSpan GetBreakTime(int criticalValue)
         {
             if (longBreakNeedTomato == criticalValue)
@@ -107,20 +143,20 @@ namespace GTomato
             }
         }
 
-        private void showCountdown()
+        // 显示倒计时
+        private void ShowCountdown()
         {
             lblTimer.Text = countdown.ToString(@"mm\:ss");
-            notifyIcon1.Text = countdown.ToString(@"mm\:ss");
-
-            //notifyIcon1.ShowBalloonTip(1000, "专注时间", countdown.ToString(@"mm\:ss"), ToolTipIcon.Info);
         }
 
-        private void showTomatoPicture()
+        // 显示番茄图片
+        private void ShowTomatoPicture()
         {
             PictureBox pb = new PictureBox();
             pb.Size = new Size(48, 48);
             pb.Image = Properties.Resources.tomato;
             pb.SizeMode = PictureBoxSizeMode.StretchImage;
+            
 
             lblTomatos.Controls.Add(pb);
         }
@@ -132,8 +168,6 @@ namespace GTomato
                 TopMost = false;
 
                 ShowInTaskbar = false;
-
-                notifyIcon1.Visible = true;
             }
         }
 
@@ -158,8 +192,6 @@ namespace GTomato
             {
                 this.ShowInTaskbar = true;
 
-                notifyIcon1.Visible = false;
-
                 WindowState = FormWindowState.Normal;
 
                 this.Activate();
@@ -173,11 +205,5 @@ namespace GTomato
             e.Cancel = true;
         }
 
-        private void btnShowTomato_Click(object sender, EventArgs e)
-        {
-            showTomatoPicture();
-        }
-
-        
     }
 }

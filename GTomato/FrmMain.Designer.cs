@@ -37,10 +37,12 @@
             this.tsmiExit = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTomatos = new System.Windows.Forms.FlowLayoutPanel();
             this.panTop = new System.Windows.Forms.Panel();
-            this.btnRest = new System.Windows.Forms.Button();
+            this.btnResetLongBreak = new System.Windows.Forms.Button();
+            this.btnLongBreak = new System.Windows.Forms.Button();
+            this.btnAddOneTomato = new System.Windows.Forms.Button();
+            this.btnShortBreak = new System.Windows.Forms.Button();
             this.btnPause = new System.Windows.Forms.Button();
             this.btnStart = new System.Windows.Forms.Button();
-            this.btnShowTomato = new System.Windows.Forms.Button();
             this.lblTimer = new System.Windows.Forms.Label();
             this.lblTomatoCount = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -58,7 +60,7 @@
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "番茄工作法";
+            this.notifyIcon1.Text = "番茄土豆";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
@@ -95,36 +97,74 @@
             // 
             // panTop
             // 
-            this.panTop.Controls.Add(this.btnRest);
+            this.panTop.Controls.Add(this.btnResetLongBreak);
+            this.panTop.Controls.Add(this.btnLongBreak);
+            this.panTop.Controls.Add(this.btnAddOneTomato);
+            this.panTop.Controls.Add(this.btnShortBreak);
             this.panTop.Controls.Add(this.btnPause);
             this.panTop.Controls.Add(this.btnStart);
-            this.panTop.Controls.Add(this.btnShowTomato);
             this.panTop.Controls.Add(this.lblTimer);
             this.panTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panTop.Location = new System.Drawing.Point(0, 0);
             this.panTop.Name = "panTop";
-            this.panTop.Size = new System.Drawing.Size(519, 192);
+            this.panTop.Size = new System.Drawing.Size(519, 207);
             this.panTop.TabIndex = 5;
             // 
-            // btnRest
+            // btnResetLongBreak
             // 
-            this.btnRest.BackColor = System.Drawing.Color.LimeGreen;
-            this.btnRest.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRest.Location = new System.Drawing.Point(398, 146);
-            this.btnRest.Name = "btnRest";
-            this.btnRest.Size = new System.Drawing.Size(80, 40);
-            this.btnRest.TabIndex = 6;
-            this.btnRest.Text = "休息";
-            this.btnRest.UseVisualStyleBackColor = false;
-            this.btnRest.Click += new System.EventHandler(this.btnRest_Click);
+            this.btnResetLongBreak.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnResetLongBreak.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnResetLongBreak.Location = new System.Drawing.Point(235, 151);
+            this.btnResetLongBreak.Name = "btnResetLongBreak";
+            this.btnResetLongBreak.Size = new System.Drawing.Size(100, 40);
+            this.btnResetLongBreak.TabIndex = 7;
+            this.btnResetLongBreak.Text = "重置长休";
+            this.btnResetLongBreak.UseVisualStyleBackColor = false;
+            this.btnResetLongBreak.Click += new System.EventHandler(this.btnResetLongBreak_Click);
+            // 
+            // btnLongBreak
+            // 
+            this.btnLongBreak.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnLongBreak.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnLongBreak.Location = new System.Drawing.Point(43, 151);
+            this.btnLongBreak.Name = "btnLongBreak";
+            this.btnLongBreak.Size = new System.Drawing.Size(80, 40);
+            this.btnLongBreak.TabIndex = 8;
+            this.btnLongBreak.Text = "长休息";
+            this.btnLongBreak.UseVisualStyleBackColor = false;
+            this.btnLongBreak.Click += new System.EventHandler(this.btnLongBreak_Click);
+            // 
+            // btnAddOneTomato
+            // 
+            this.btnAddOneTomato.BackColor = System.Drawing.Color.Tomato;
+            this.btnAddOneTomato.Font = new System.Drawing.Font("宋体", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnAddOneTomato.Location = new System.Drawing.Point(378, 151);
+            this.btnAddOneTomato.Name = "btnAddOneTomato";
+            this.btnAddOneTomato.Size = new System.Drawing.Size(100, 40);
+            this.btnAddOneTomato.TabIndex = 7;
+            this.btnAddOneTomato.Text = "加一番茄";
+            this.btnAddOneTomato.UseVisualStyleBackColor = false;
+            this.btnAddOneTomato.Click += new System.EventHandler(this.btnAddOneTomato_Click);
+            // 
+            // btnShortBreak
+            // 
+            this.btnShortBreak.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnShortBreak.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnShortBreak.Location = new System.Drawing.Point(139, 151);
+            this.btnShortBreak.Name = "btnShortBreak";
+            this.btnShortBreak.Size = new System.Drawing.Size(80, 40);
+            this.btnShortBreak.TabIndex = 6;
+            this.btnShortBreak.Text = "短休息";
+            this.btnShortBreak.UseVisualStyleBackColor = false;
+            this.btnShortBreak.Click += new System.EventHandler(this.btnShortBreak_Click);
             // 
             // btnPause
             // 
             this.btnPause.BackColor = System.Drawing.Color.Tan;
-            this.btnPause.Font = new System.Drawing.Font("微软雅黑", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnPause.Location = new System.Drawing.Point(312, 146);
+            this.btnPause.Font = new System.Drawing.Font("微软雅黑", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnPause.Location = new System.Drawing.Point(318, 99);
             this.btnPause.Name = "btnPause";
-            this.btnPause.Size = new System.Drawing.Size(80, 40);
+            this.btnPause.Size = new System.Drawing.Size(160, 40);
             this.btnPause.TabIndex = 7;
             this.btnPause.Text = "暂停";
             this.btnPause.UseVisualStyleBackColor = false;
@@ -134,33 +174,22 @@
             // 
             this.btnStart.BackColor = System.Drawing.Color.Tomato;
             this.btnStart.Font = new System.Drawing.Font("微软雅黑", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnStart.Location = new System.Drawing.Point(312, 47);
+            this.btnStart.Location = new System.Drawing.Point(318, 24);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(166, 63);
+            this.btnStart.Size = new System.Drawing.Size(160, 60);
             this.btnStart.TabIndex = 4;
             this.btnStart.Text = "开始";
             this.btnStart.UseVisualStyleBackColor = false;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // btnShowTomato
-            // 
-            this.btnShowTomato.Location = new System.Drawing.Point(43, 12);
-            this.btnShowTomato.Name = "btnShowTomato";
-            this.btnShowTomato.Size = new System.Drawing.Size(100, 23);
-            this.btnShowTomato.TabIndex = 7;
-            this.btnShowTomato.Text = "吃掉一个番茄";
-            this.btnShowTomato.UseVisualStyleBackColor = true;
-            this.btnShowTomato.Visible = false;
-            this.btnShowTomato.Click += new System.EventHandler(this.btnShowTomato_Click);
-            // 
             // lblTimer
             // 
             this.lblTimer.AutoSize = true;
             this.lblTimer.BackColor = System.Drawing.Color.Transparent;
-            this.lblTimer.Font = new System.Drawing.Font("微软雅黑", 70F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblTimer.Location = new System.Drawing.Point(22, 47);
+            this.lblTimer.Font = new System.Drawing.Font("微软雅黑", 60F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblTimer.Location = new System.Drawing.Point(25, 24);
             this.lblTimer.Name = "lblTimer";
-            this.lblTimer.Size = new System.Drawing.Size(295, 121);
+            this.lblTimer.Size = new System.Drawing.Size(252, 104);
             this.lblTimer.TabIndex = 5;
             this.lblTimer.Text = "00:00";
             // 
@@ -180,16 +209,16 @@
             this.panel1.Controls.Add(this.lblTomatoCount);
             this.panel1.Controls.Add(this.lblTomatos);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 192);
+            this.panel1.Location = new System.Drawing.Point(0, 207);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(519, 267);
+            this.panel1.Size = new System.Drawing.Size(519, 262);
             this.panel1.TabIndex = 7;
             // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 459);
+            this.ClientSize = new System.Drawing.Size(519, 469);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panTop);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -215,8 +244,8 @@
 
         private System.Windows.Forms.Panel panTop;
         private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.Button btnRest;
-        private System.Windows.Forms.Button btnShowTomato;
+        private System.Windows.Forms.Button btnShortBreak;
+        private System.Windows.Forms.Button btnAddOneTomato;
         private System.Windows.Forms.Label lblTimer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.FlowLayoutPanel lblTomatos;
@@ -227,5 +256,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiExit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.Button btnLongBreak;
+        private System.Windows.Forms.Button btnResetLongBreak;
     }
 }
